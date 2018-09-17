@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html>
+<style>
+    .select2 {
+        width: 100% !important;
+    }
+
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="FroontDoor">
+    <link rel="shortcut icon" href="<?php echo site_url()?>assets/images/favicon_1.ico">
+    <title>Front Door - Superadmin</title>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    
+
+
+</head>
+
+
+<body class="fixed-left">
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title">Add Program</h4>
+                                <ol class="breadcrumb float-right">
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Dashbaord</a></li>
+                                    <li class="breadcrumb-item active">Add Program</li>
+                                </ol>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-box">
+
+                                <form name="myForm" action="<?php echo site_url()?>Frontdoor/add_programs" method="post" data-parsley-validate="" onsubmit="return validateForm();">
+                                    <div class="page">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="progName">Program Name </label>
+                                                    <input type="text" name="progName" parsley-trigger="change" required placeholder="Program Name" class="form-control" id="progName">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div id="hideassignorg" style="display:none" class="form-group">
+                                                    <label>Assign Orgnization</label>
+
+                                                    <select class="form-control select2 select" placeholder="Select" name="org_id" id="org_id">
+                                                        <option>
+                                                            <?php 
+                                                    foreach($organization as $row)
+                                                    {          
+                                                        echo '<option value="'.$row->id.'">'.$row->org_name.'</option>';
+                                                    }
+                                                ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Status</label>
+                                                    <select class="form-control" name="status" id="status">
+                                                        <option>Select status</option>
+                                                        <option>Active</option>
+                                                        <option>Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label>Program Qualify Parameters</label>
+                                        </div>
+                                        <!----------copy following HTML & impiliment in project------->
+                                        <div id="Parameter-container">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <select class="form-control select2 question1" onChange="quest(this.value,this.id);" placeholder="Question" id="pgm_question1" name="pgm_question[]">
+                                                            <option></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control select2 answer1" multiple="multiple" placeholder="Answer" id="pgm_que_ans1" name="pgm_que_ans1[]">
+                                                            <option></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <select class="form-control select2 question1" onChange="quest(this.value,this.id);" placeholder="Question" id="pgm_question2" name="pgm_question[]">
+                                                            <option></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control select2 answer1" multiple="multiple" placeholder="Answer" id="pgm_que_ans2" name="pgm_que_ans2[]">
+                                                            <option></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <select class="form-control select2 question1" onChange="quest(this.value,this.id);" placeholder="Question" id="pgm_question3" name="pgm_question[]">
+                                                            <option></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control select2 answer1" multiple="multiple" placeholder="Answer" id="pgm_que_ans3" name="pgm_que_ans3[]">
+
+                                                            <option></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <small class="form-text"><a href="javascript:void(0);" id="addprog">Add More</a></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="addprogram">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group text-right m-b-0">
+                                                        <button class="btn btn-primary waves-effect waves-light" type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!----------END Here------->
+                                    </div>
+                                </form>
+                                <div id="loading"></div>
+
+                            </div>
+                            <!-- end card-box -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+
+
+                </div>
+                <!-- end container -->
+            </div>
+        </div>
+    </div>
+    <!-- end content -->
+    <!-- ============================================================== -->
+    <!-- End Right content here -->
+    <!-- ============================================================== -->
+
+    <!-- END wrapper -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<!----------copy following js & impiliment in project------->
+    <script>
+        $(document).ready(function() {
+
+            function initializeSelect2(selectElementObj) {
+                selectElementObj.select2({
+                    tags: true
+                });
+            }
+
+
+            //onload: call the above function 
+            initializeSelect2($(".select2"));
+
+            var max_fields = 30; //maximum input boxes allowed
+            var wrapper = $(".addprogram"); //Fields wrapper
+            var add_button = $("#addprog"); //Add button ID
+            var x=1;
+            var pq = 3;
+            var pa = 3;
+            $(add_button).click(function(e) { //on add input button click
+
+                e.preventDefault();
+                if (x < max_fields) { //max input box allowed
+                    x++; //text box increment
+                    pq++;
+                    pa++;
+                    var $newSelects = $('<div class="row"><div class="col-md-4"><div class="form-group"> <select class="form-control select2 question1" onChange="quest(this.value,this.id);" placeholder="Question" id="pgm_question1' + pq + '" name="pgm_question1' + pq + '[]"><option></option> </select></div>' + '<div class="form-group"> <select class="form-control select2 answer1" multiple="multiple" placeholder="Answer" id="pgm_que_ans1' + pa + '" name="pgm_que_ans1' + pa + '[]"><option></option> </select></div></div><div class="col-md-4"><div class="form-group"> <select class="form-control select2 question1" onChange="quest(this.value,this.id);" placeholder="Question" id="pgm_question2' + pq + '" name="pgm_question2' + pq + '[]">' + '<option></option> </select></div><div class="form-group"> <select class="form-control select2 answer1" multiple="multiple" placeholder="Answer" id="pgm_que_ans2' + pa + '" name="pgm_que_ans2' + pa + '[]">' + '<option></option> </select></div></div><div class="col-md-4"><div class="form-group"> <select class="form-control select2 question1" onChange="quest(this.value,this.id);" placeholder="Question" id="pgm_question3' + pq + '" name="pgm_question3' + pq + '[]">' + '<option></option> </select></div><div class="form-group"> <select class="form-control select2 answer1" multiple="multiple" placeholder="Answer" id="pgm_que_ans3' + pa + '" name="pgm_que_ans3' + pa + '[]">' + '<option></option> </select></div><a href="#" class="remove-camera">remove</a></div></div>')
+                    wrapper.append($newSelects);
+                    initializeSelect2($newSelects.find('.select2'));
+                    console.log(pq);
+                    console.log(pa);
+                }
+
+            });
+
+            $(wrapper).on("click", ".remove-camera", function(e) { //user click on remove text
+                e.preventDefault();
+                $(this).parent('div').remove();
+
+                $(".camerasCounter").each(function(elm) {
+                    var count = elm + 1
+                    $(this).attr("name", "Camera " + count);
+                    $(this).attr("value", "Camera " + count);
+                    x = elm + 1;
+                });
+            })
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
