@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: calibri;
+            font-size: 12px;
+        }
+
+        p {
+            padding: 0;
+            margin: 5px 0;
+        }
+
+        .pdftbl {
+            border-collapse: collapse;
+            border-spacing: 0;
+            text-align: center;
+        }
+
+        .pdftbl th {
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            height: 30px;
+            background-color: #3bafda;
+            padding: 0 4px;
+        }
+
+        .pdftbl td {
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            height: 30px;
+        }
+
+        .pdftbl .footer {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body style="width: 210mm; height: 296mm;">
+    <section style="padding:6mm">
+
+        <table style="font-family: calibri; font-size: 13px; line-height:18px; border:solid 1px #dadada; padding:10px;" width="100%" llpadding="0" cellspacing="0" border="0" id="mytbl">
+            <tr>
+                <td colspan="2" style="padding: 4px; width:50%"><img class="app-sidebar__user-avatar" src="'.base_url().$caseprofile.'" alt="'.$casename.'" style="width:100px;height:100px;">
+                    <div>Org Name</div>
+                </td>
+                <td colspan="2" style="padding: 4px; width:50%">
+                    <p>Address:</p>
+                    <p>Web:</p>
+                    <p>Email:</p>
+                    <p>Contact nos:</p>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="3" style="text-align: center;border-bottom: solid 1px #666;height: 30px;font-size: 16px;"><strong class="title">Patient  Information</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 4px; width:50%">
+                    <p style="margin:4px 0; padding: 0; "><strong>Patient Name:</strong> <span>'.$result[0]->first_name.' '.$result[0]->middle_name.' '.$result[0]->last_name.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Patient Id:</strong> <span>'.$result[0]->patient_id.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>System PID:</strong> <span>'.$result[0]->system_pid.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Email Id:</strong> <span>'.$result[0]->email_id.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Contact No:</strong> <span>'.$result[0]->contact_no.'</span></p>
+                    <p style="margin:4px 0; padding: 0;"><strong>Date of Birth:</strong> <span>'.$result[0]->dob.'</span></p>
+                    <p style="margin: 4px 0; padding: 0; "><strong>Gender:</strong> <span>'.$result[0]->gender.'</span></p>
+                </td>
+                <td colspan="2" style="padding: 4px; width:50%">
+                    <p style="margin: 4px 0; padding: 0;"><strong>Address:</strong> <span>'.$result[0]->address.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>State:</strong> <span>'.$result[0]->state.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>City:</strong> <span>'.$result[0]->city.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Zipcode:</strong> <span>'.$result[0]->zipcode.'</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: center;border-bottom: solid 1px #666;height: 30px;font-size: 16px;"><strong class="title">Progress Note Form</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 4px; width:50%">
+                    <p style="margin:4px 0; padding: 0; "><strong>Date:</strong> <span>'.$result['patient'][0]->pdate.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Reason for Referral:</strong> <span>'.$result['patient'][0]->reason_referral.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Visit:</strong> <span>'.$result['patient'][0]->visit.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Type of Contact:</strong> <span>'.$result['patient'][0]->contact.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Assessment:</strong> <span>'.$result['patient'][0]->assessment.'</span></p>
+                    <p style="margin:4px 0; padding: 0;"><strong>Vital Signs:</strong> <span>'.$result['patient'][0]->vital_signs.'</span></p>
+                    <p style="margin: 4px 0; padding: 0; "><strong>Diagnosis:</strong> <span>'.$result['patient'][0]->diagnosis.'</span></p>
+                </td>
+                <td colspan="2" style="padding: 4px; width:50%">
+                    <p style="margin: 4px 0; padding: 0;"><strong>Duration of Encounter:</strong> <span>'.$result['patient'][0]->duration_encounter.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Pertinent History/Findings:</strong> <span>'.$result['patient'][0]->history.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Recommendations/Behavioral Change Plan:</strong> <span>'.$result['patient'][0]->behavioral.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Assessment/Diagnosis:</strong> <span>'.$result['patient'][0]->ass_diag.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Number of Visits Recommended:</strong> <span>'.$result['patient'][0]->visits_recommended.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Plan:</strong> <span>'.$result['patient'][0]->plan.'</span></p>
+                    <p style="margin: 4px 0; padding: 0;"><strong>Medication:</strong> <span>'.$result['patient'][0]->product_recommendation.'</span></p>
+                </td>
+            </tr>
+        </table>
+    </section>
+</body>
+
+</html>
