@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="http://themepixels.me/slim1.1/css/slim.css">
+<style>
+
+
+</style>
+
+<div class="slim-sidebar">
+    <label class="sidebar-label">Navigation</label>
+
+    <ul class="nav nav-sidebar">
+        <li class="sidebar-nav-item with-sub">
+            <a href="" class="sidebar-nav-link"><i class="icon ion-ios-home-outline"></i> Dashboard</a>
+            <ul class="nav sidebar-nav-sub">
+                <li class="nav-sub-item"><a href="menuother.html" class="nav-sub-link">Page 01</a></li>
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Page 02</a></li>
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Page 03</a></li>
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Page 04</a></li>
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Page 05</a></li>
+            </ul>
+        </li>
+        <li class="sidebar-nav-item with-sub">
+            <a href="" class="sidebar-nav-link"><i class="icon ion-ios-home-outline"></i> Menu</a>
+            <ul class="nav sidebar-nav-sub">
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Menu 01</a></li>
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Menu 02</a></li>
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Menu 03</a></li>
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Menu 04</a></li>
+                <li class="nav-sub-item"><a href="" class="nav-sub-link">Menu 05</a></li>
+            </ul>
+        </li>
+        <li class="sidebar-nav-item with-sub">
+            <a href="" class="sidebar-nav-link"><i class="icon ion-ios-book-outline"></i> Pages</a>
+            <ul class="nav sidebar-nav-sub">
+
+                <li class="nav-sub-item sub-with-sub">
+                    <a href="#" class="nav-sub-link">Pricing</a>
+                    <ul>
+                        <li class="sub-sub-link"><a href="">Pricing 01</a></li>
+                        <li class="sub-sub-link"><a href="">Pricing 02</a></li>
+                        <li class="sub-sub-link"><a href="">Pricing 03</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- slim-sidebar -->
+<script src="http://themepixels.me/slim1.1/lib/jquery/js/jquery.js"></script>
+<script src="cookies.js"></script>
+<script>
+    // showing 2nd level sub menu while hiding others
+    $('.sidebar-nav-link').on('click', function(e) {
+        var subMenu = $(this).next();
+
+        $(this).parent().siblings().find('.sidebar-nav-sub').slideUp();
+        $('.sub-with-sub ul').slideUp();
+
+        if (subMenu.length) {
+            e.preventDefault();
+            subMenu.slideToggle();
+        }
+    });
+
+    // showing 3rd level sub menu while hiding others
+    $('.sub-with-sub .nav-sub-link').on('click', function(e) {
+        e.preventDefault();
+        $(this).parent().siblings().find('ul').slideUp();
+        $(this).next().slideDown();
+    });
+
+    $('#slimSidebarMenu').on('click', function(e) {
+        e.preventDefault();
+        if (window.matchMedia('(min-width: 1200px)').matches) {
+            $('body').toggleClass('hide-sidebar');
+        } else {
+            $('body').toggleClass('show-sidebar');
+        }
+    });
+    
+    
+    
+    $(document).ready(function() {
+        $('a[href="' + window.location.pathname + '"]').closest('.sidebar-nav-link').addClass("active");
+        $(function() {
+            $(".nav-sub-link .sub-sub-link").on("click", function(e) {
+                e.preventDefault();
+                $(this).closest('.sidebar-nav-item').find('a.sidebar-nav-link').addClass("active");
+            });
+        });
+
+
+    });
+
+</script>
