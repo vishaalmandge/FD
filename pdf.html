@@ -109,3 +109,32 @@
 </body>
 
 </html>
+
+ <script type="text/javascript">
+       $('#edit_dob').datepicker({
+
+icons: {
+  time: "fa fa-clock-o",
+  date: "fa fa-calendar",
+  up: "fa fa-arrow-up",
+  down: "fa fa-arrow-down"
+},
+dateFormat: "mm/dd/yyyy"
+}).on('change', function (ev) {
+          var date='';
+          var selectDate = $('#edit_dob').val().split("/");
+          var todayDate = new Date();
+          var selectedDate = new Date(selectDate[2], selectDate[0], selectDate[1]);
+          var firstDate = new Date(todayDate.getFullYear(), todayDate.getMonth() + 1, todayDate.getDate());
+          var diff = Math.floor(firstDate.getTime() - selectedDate.getTime());
+          var day = 1000 * 60 * 60 * 24;
+
+          var days = Math.floor(diff / day);
+          var months = Math.floor(days / 31);
+          var years = Math.floor(months / 12);
+          date=years+' year,'+months+' months';
+         
+          $('input[name=edit_age]').val(date);
+      });
+
+    </script>
