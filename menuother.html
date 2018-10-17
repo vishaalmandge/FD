@@ -49,51 +49,5 @@
 Hi
 <!-- slim-sidebar -->
 <script src="http://themepixels.me/slim1.1/lib/jquery/js/jquery.js"></script>
-//
-<script src="cookies.js"></script>
+<script src="main.js"></script>
 
-<script>
-    // showing 2nd level sub menu while hiding others
-    $('.sidebar-nav-link').on('click', function(e) {
-        var subMenu = $(this).next();
-
-        $(this).parent().siblings().find('.sidebar-nav-sub').slideUp();
-        $('.sub-with-sub ul').slideUp();
-
-        if (subMenu.length) {
-            e.preventDefault();
-            subMenu.slideToggle();
-        }
-    });
-
-    // showing 3rd level sub menu while hiding others
-    $('.sub-with-sub .nav-sub-link').on('click', function(e) {
-        e.preventDefault();
-        $(this).parent().siblings().find('ul').slideUp();
-        $(this).next().slideDown();
-    });
-
-    $('#slimSidebarMenu').on('click', function(e) {
-        e.preventDefault();
-        if (window.matchMedia('(min-width: 1200px)').matches) {
-            $('body').toggleClass('hide-sidebar');
-        } else {
-            $('body').toggleClass('show-sidebar');
-        }
-    });
-
-
-
-    $(document).ready(function() {
-        $('a[href="' + window.location.pathname + '"]').closest('.sidebar-nav-link').addClass("active");
-        $(function() {
-            $(".nav-sub-link").on("click", function() {
-                //e.preventDefault();
-                $(this).closest('.sidebar-nav-item').find('a.sidebar-nav-link').addClass("active");
-            });
-        });
-        
-
-    });
-
-</script>
