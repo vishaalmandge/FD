@@ -1,0 +1,8 @@
+Find Vendor /roduct Page
+User cn search By Vendor Name, City, zip, Product Name (Use wild characters for search)
+If i search by vname, city, zip it give me result page with vendor details (Name, Address, Contact Details etc..) on click of view details a modal popup openit shows Vendor details, add, contact details, Branches, Distance & categoriwise products
+On clik of product it open new page in new tab with product description (all details that we've for product) Add to cart button, it add to cart & proceed to check out -> order summery -> checkout -> select delivery type(Take a way / delivery)-> if delivery then user have select address or can add new address-> submit-> order placed
+Orderno genarate & email triggred to vendor & user
+
+Vendor login
+Vendor change the satus of order (Email triggred to user)
